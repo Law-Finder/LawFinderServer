@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  # MongoDB services
+  mongo_db :
+    container_name: mongo_db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+
+  #Node services
+  api :
+    build: .
+    ports :
+      - 4000:3000
+    environment:
+      SERVER_PORT : 8000
+      SOCKET_PORT : 8100
+      PREFIX_API_VERSION : /api/v1
+      DB_URI : mongodb://mongo_db:27017/law_finder
+      SECRET_KEY : YukiElectric
+    depends_on:
+      - mongo_db
+  
+volumes:
+  mongo_db : {}
