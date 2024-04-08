@@ -13,13 +13,13 @@ Web api được xây dựng lên từ nodejs socket.io mongodb dùng để cung
 
 1. **Clone Repository**: Clone repository về máy tính của bạn.
 
-       git clone 
+       git clone https://github.com/Law-Finder/LawFinderServer.git
 
 2. **Cài đặt dependencies**: Cài đặt Docker desktop từ trang web [Docker](https://www.docker.com/products/docker-desktop/) sau đó khởi tạo và chạy ứng dụng vừa cài đặt.
 
 3. **Di chuyển vào thư mục dự án**:
 
-       cd  
+       cd  LawFinderServer
 
 4. **Cài đặt và chạy với Docker**: Sử dụng Terminal để cài đặt và chạy ứng dụng.
 
