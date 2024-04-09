@@ -14,6 +14,4 @@ app.use("/static", express.static(config.get("app.static_folder")));
 
 app.use(config.get("app.prefixApiVersion"),require(`${__dirname}/../routers/web`));
 
-const mongose = require('../common/database')();
-
 module.exports = app;

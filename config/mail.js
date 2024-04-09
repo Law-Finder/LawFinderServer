@@ -3,7 +3,7 @@ module.exports = {
     post: 587,
     secure: false,
     auth: {
-        user: "yukipham0702@gmail.com",
-        pass: "ogwn sato wznz sukr",
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
     }
 }

@@ -19,9 +19,8 @@ services:
       SOCKET_PORT : 8100
       PREFIX_API_VERSION : /api/v1
       DB_URI : mongodb://mongo_db:27017/law_finder
-      SECRET_KEY : YukiElectric
     depends_on:
       - mongo_db
-  
+      
 volumes:
   mongo_db : {}
