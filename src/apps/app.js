@@ -13,5 +13,8 @@ app.use(express.json({limit : '10mb'}));
 app.use("/static", express.static(config.get("app.static_folder")));
 
 app.use(config.get("app.prefixApiVersion"),require(`${__dirname}/../routers/web`));
+app.use(express.static(config.get("app.image_folder")));
+app.use(express.static(config.get("app.server_screen")));
+app.use("/*", require(`${__dirname}/../routers/error`));
 
 module.exports = app;
