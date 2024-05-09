@@ -7,7 +7,7 @@ exports.generateToken = (account) => {
     const {privateKey , publicKey} = crypto.generateKeyPairSync('rsa', {
         modulusLength : 4096
     });
-
+    const key = publicKey.export({ type: 'pkcs1', format: 'pem' });
     const token = jwt.sign(account, privateKey, {
         algorithm: 'RS256',
         expiresIn: '180d'
@@ -15,7 +15,7 @@ exports.generateToken = (account) => {
 
     return {
         token,
-        publicKey
+        publicKey : key,
     }
 }
 
@@ -27,14 +27,15 @@ exports.generateIDToken = (id) => {
     return token;
 }
 
-exports.verifyToken = (token, publicKey) => {
+exports.verifyToken = (token, key) => {
     let account;
+    const publicKey = crypto.createPublicKey(key);
     jwt.verify(token, publicKey, (err, data) => {
         if(err) {
-            logger.error(err);
+            logger.error(err.name + " "+ err.message);
             return undefined;
         }
-        account = data.account;
+        account = data;
     });
     return account;
 }
@@ -43,10 +44,14 @@ exports.verifyIDToken = (token) => {
     let id;
     jwt.verify(token, config.get('app.secretKey'), (err, data) => {
         if(err) {
-            logger.error(err);
+            logger.error(err.name + " "+ err.message);
             return undefined;
         }
         id = data.id;
     })
     return id;
+}
+
+exports.generatePassword = () => {
+    return crypto.randomBytes(Math.ceil(3)).toString('hex').slice(0, 6);
 }

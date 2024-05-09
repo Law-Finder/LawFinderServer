@@ -11,7 +11,8 @@ module.exports = {
         type: String
     },
     date_of_birth : {
-        type: Date,
+        required : true,
+        type: Date
     },
     gender : {
         type: String,
@@ -38,5 +39,4 @@ module.exports = {
         type: String,
         default: "default.png"
     }
-
 }

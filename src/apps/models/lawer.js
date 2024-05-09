@@ -18,11 +18,6 @@ const LawerSchema = new mongoose.Schema({
     }
 },{timestamps : true});
 
-LawerSchema.pre('save', (next) => {
-    this.fullname = `${this.firstname} ${this.lastname}`;
-    next();
-});
-
 const LawerModel = mongoose.model('Lawers', LawerSchema, 'lawers');
 
 module.exports = LawerModel;

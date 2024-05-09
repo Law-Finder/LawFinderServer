@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const AuthRouter = require('./auth');
-const RoleRouter = require('./role');
-
-
-router.use('/auth',AuthRouter);
-router.use('/role',RoleRouter);
+router.use('/auth', require('./auth'));
+router.use('/role', require('./role'));
+router.use('/user', require('./user'));
+router.use('/profile', require('./profile'));
+router.use('/inactive', require('./account'));
+router.use('/lawer', require('./lawer'));
 
 module.exports = router;

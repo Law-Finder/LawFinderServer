@@ -25,11 +25,13 @@ const AccountSchema = new mongoose.Schema({
         default: false
     },
     public_key : {
-        type: String,
+        default : "",
+        type: String
     },
     status : {
-        type: Boolean
-    }
+        type: Boolean,
+        default: false
+    },
 }, {timestamps : true});
 
 const AccountModel = mongoose.model('Accounts', AccountSchema, "accounts");

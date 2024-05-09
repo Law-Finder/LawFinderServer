@@ -10,11 +10,6 @@ const UserSchema = new mongoose.Schema({
     }
 }, {timestamps: true});
 
-UserSchema.pre('save', (next) => {
-    this.fullname = `${this.firstname} ${this.lastname}`;
-    next();
-});
-
 const UserModel = mongoose.model('Users', UserSchema, 'users');
 
 module.exports = UserModel;
