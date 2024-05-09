@@ -20,7 +20,7 @@ exports.getLawerById = async (req, res) => {
     const id = req.params.id;
     try {
         const lawer = await UoW.LawerModel.findOne({account_id: id}).populate({path : "account_id"});
-        const role = await UoW.LawerRoleModel.findOne({account_id: id}).populate({path : "role_id"});
+        const role = await UoW.UserRoleModel.findOne({account_id: id}).populate({path : "role_id"});
         const data = {lawer, role};
         if(lawer && role) {
             res.status(200).json(response.dataResponse(data));
@@ -66,7 +66,7 @@ exports.delete = async (req, res) => {
         const Lawer = await UoW.LawerModel.findByIdAndDelete({account_id: id});
         if(Lawer) {
             await UoW.AccountModel.deleteOne({account_id: id});
-            await UoW.LawerRoleModel.deleteOne({account_id: id});
+            await UoW.UserRoleModel.deleteOne({account_id: id});
             res.status(200).json(response.command(`Delete Lawer with id ${id} successfully`));
         }else res.status(404).json(response.exceptionResponse(`Account with id ${id} does not exist`));
     }catch(err) {

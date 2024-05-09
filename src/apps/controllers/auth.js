@@ -74,7 +74,7 @@ exports.lawerRegister = async (req, res) => {
                 await UoW.AccountModel({ email, password }).save();
                 const account_id = (await UoW.AccountModel.findOne({ email }))._id;
                 await UoW.LawerModel({ email, ...infor, account_id }).save();
-                const RoleId = (await UoW.RoleModel.findOne({ name: setting.USER }))._id;
+                const RoleId = (await UoW.RoleModel.findOne({ name: setting.LAWER }))._id;
                 await UoW.UserRoleModel({ account_id, role_id: RoleId }).save();
                 res.status(201).json(response.commandResponse("Create account successfully"));
             } else res.status(400).json(response.exceptionResponse("Not found file certificate"));
